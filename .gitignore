@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Environment variables (contains SMTP credentials - never commit)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime and caches
+.npm/
+.eslintcache
+*.pid
+
+# Editor settings (keep the shared Live Server config)
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build and archive output
+dist/
+build/
+*.zip
