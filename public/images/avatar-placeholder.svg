@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Neutral profile silhouette">
+  <!-- Neutral silhouette used until real team photos are added -->
+  <rect width="120" height="120" fill="#eaf3fc"/>
+  <circle cx="60" cy="46" r="20" fill="#9cc2e6"/>
+  <path d="M20 120c0-26 18-42 40-42s40 16 40 42z" fill="#9cc2e6"/>
+</svg>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traceback-Technology | Project Showcase</title>
+  <meta name="description" content="A closer look at BC Smart Ecosystem, the current project from Traceback-Technology.">
+  <link rel="stylesheet" href="style.css">
+  <script src="contact.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header: same on every page -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo: to try the other logo option, change the src below to the other file in images/ (same line on every page) -->
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="images/TT_LOGO.png" alt="Traceback-Technology Logo">
+        <span class="brand-name">Traceback-Technology</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="showcase.html" aria-current="page">Project Showcase</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Meet the Team</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- MEETING NOTE:
+         The Products page should give visitors a concise introduction to BC Ways
+         and BC Eats. This Showcase page is where they should find the fuller
+         project explanation, its intended value, the app interface and a
+         walkthrough video when the required materials are ready.
+         Keep the two pages useful without making them repeat each other. -->
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">Project Showcase</span>
+        <h1>BC Smart Ecosystem in detail</h1>
+        <p>The full story behind the project: the problem we are tackling, how BC Ways and BC Eats work, and who they are for.</p>
+      </div>
+    </section>
+
+    <!-- What it is and the problem it aims to address.
+         MEETING NOTE: Keep the project name and its relationship to the
+         organisation consistent across the website. Traceback-Technology is
+         the team/organisation, while BC Smart Ecosystem (also called BC Smart
+         Lifestyle in the proposal) is the project. -->
+    <section class="section">
+      <div class="container">
+        <div class="glass project-overview">
+          <span class="eyebrow">The project</span>
+          <h2>What BC Smart Ecosystem is</h2>
+          <p>BC Smart Ecosystem, also called BC Smart Lifestyle in our proposal, is a single application with more than one module. It is designed to modernise the student and visitor experience at Belgium Campus, and it is made up of BC Ways (navigation) and BC Eats (food services).</p>
+          <h3 style="margin-top:1.4rem">The problem it aims to address</h3>
+          <div class="showcase-split" style="margin-top:0.8rem">
+            <div class="review-empty">
+              <p><strong>Navigation and orientation.</strong> Large campus layouts and static signage can leave students late for class and first-time visitors confused.</p>
+            </div>
+            <div class="review-empty">
+              <p><strong>Dining inefficiency.</strong> Manual tuckshop orders mean long queues, human error and no real-time view of the menu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How BC Ways works.
+         TEAM NOTE: Keep the explanation aligned with the actual project
+         implementation and proposal. Clearly distinguish implemented features
+         from planned features, and verify technical claims such as GPS tracking,
+         route recalculation and visitor QR access before describing them as
+         working functionality. -->
+    <section class="section section-alt" id="bc-ways">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Component</span>
+          <h2>BC Ways: how it works</h2>
+          <p class="lead">BC Ways is a two-dimensional digital navigation system built for people on foot. A user picks where they want to go, and the app works out a route and guides them along it.</p>
+        </div>
+        <div class="card-grid">
+          <article class="glass card">
+            <h3>Searchable campus map</h3>
+            <p>A 2D map showing buildings, offices and services, so people can look up a destination instead of hunting for signs.</p>
+          </article>
+          <article class="glass card">
+            <h3>Shortest route</h3>
+            <p>Routes are planned with Dijkstra&rsquo;s shortest-path algorithm over a graph of campus points.</p>
+          </article>
+          <article class="glass card">
+            <h3>Live guidance</h3>
+            <p>GPS tracking follows the user along the route and recalculates it if they go off track.</p>
+          </article>
+          <article class="glass card">
+            <h3>Visitor access</h3>
+            <p>Visitors are meant to reach navigation through a QR code, without downloading the app first.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How BC Eats works.
+         TEAM NOTE: Verify each feature against the current implementation and
+         project plan. In particular, distinguish planned payment, order tracking,
+         dashboard, delivery and analytics functionality from features that are
+         already working. -->
+    <section class="section" id="bc-eats">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Component</span>
+          <h2>BC Eats: how it works</h2>
+          <p class="lead">BC Eats moves the campus tuckshop online. Students view the menu in the app, place an order, and follow its progress, while the tuckshop manages everything from a dashboard.</p>
+        </div>
+        <div class="card-grid">
+          <article class="glass card">
+            <h3>Digital menu</h3>
+            <p>A menu board that can be updated in real time, so students see what is currently available.</p>
+          </article>
+          <article class="glass card">
+            <h3>Pre-ordering</h3>
+            <p>Orders are placed from a phone, with cashless payment, and the student chooses collection or delivery.</p>
+          </article>
+          <article class="glass card">
+            <h3>Order tracking</h3>
+            <p>Orders move through stages (received, preparing, ready, completed) and students are notified as their order changes.</p>
+          </article>
+          <article class="glass card">
+            <h3>Admin dashboard</h3>
+            <p>Tuckshop staff receive orders and manage the menu from a dashboard that also offers analytics.</p>
+          </article>
+        </div>
+        <!-- IMPORTANT: Drone delivery is proposed work, not a completed feature.
+             Keep this distinction until the team confirms implementation status. -->
+        <p class="note">Drone delivery is part of the BC Eats plan. It is a proposed option and should be read as planned work, not a finished feature.</p>
+      </div>
+    </section>
+
+    <!-- Value to students and visitors.
+         TEAM NOTE: These are intended benefits from the proposal, not proven
+         outcomes. Do not present them as measured results unless supporting
+         evidence or evaluation data becomes available. -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="glass project-overview">
+          <span class="eyebrow">Who it is for</span>
+          <h2>The intended value</h2>
+          <ul class="about-list">
+            <li><strong>Students:</strong> an easier way to find their way around campus and to order food without standing in a queue.</li>
+            <li><strong>First-time visitors:</strong> a way to find destinations on campus more easily and with more confidence.</li>
+            <li><strong>Campus staff:</strong> a clearer view of tuckshop orders and the menu.</li>
+          </ul>
+          <p class="note">These are the goals set out in our project proposal. We have not yet gathered student survey data to show how well they are met.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application interface / screenshots
+         TEAM: The app interfaces are still being built, so there are no screenshots yet.
+         When real screenshots are ready, put them in images/ (for example images/bc-ways-1.png) and
+         replace the status card below with this inside the .media-slot div:
+         <figure class="glass media-frame"><img src="images/bc-ways-1.png" alt="Describe what the screenshot shows"><figcaption>BC Ways</figcaption></figure>
+         Only use real screenshots of our own app.
+         MEETING NOTE: Adding actual app interface images is part of making the
+         Showcase page more informative. Do not mark this section complete until
+         the screenshots are supplied and added. -->
+    <section class="section" id="screenshots">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Application interface</span>
+          <h2>Screenshots</h2>
+        </div>
+        <div class="media-slot">
+          <div class="glass card">
+            <p class="status-line" style="margin:0">The application interfaces are still being built. Real screenshots of BC Ways and BC Eats will appear here once they are ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Walkthrough video
+         TEAM: No video has been made yet. When it exists, replace the status card below with:
+         <div class="glass media-frame"><video controls preload="metadata"><source src="videos/bc-smart-ecosystem.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+         (create a videos/ folder inside public/ for the file), or use the real hosting link the team provides.
+         MEETING NOTE: A project walkthrough video was discussed for the Showcase page.
+         Coordinate who will record it and where the final video will be hosted.
+         Do not remove the pending status or present the video as available until
+         the recording has been completed and supplied. -->
+    <section class="section section-alt" id="video">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Walkthrough</span>
+          <h2>Project walkthrough video</h2>
+        </div>
+        <div class="glass card">
+          <p class="status-line" style="margin:0">A walkthrough video explaining BC Smart Ecosystem has not been recorded yet. It will be added here when it is ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback form: sends a message to the team by email through the Node server (POST /api/contact).
+         It only works when the server is running with valid SMTP settings, see README.txt.
+         TEAM NOTE: Keep this as a genuine visitor feedback form rather than filling
+         the page with placeholder testimonials or reviews. Before deployment, test
+         the form with the server and valid SMTP settings, and check that submissions
+         reach the intended team inbox. -->
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="glass feedback">
+          <span class="eyebrow">Feedback</span>
+          <h2>Send the team your feedback</h2>
+          <p>Have a thought about BC Ways or BC Eats, or a question about the project? Fill this in and it will be emailed to the Traceback-Technology team. We will use your email address only to reply.</p>
+          <form id="feedback-form" class="form" novalidate>
+            <div class="field">
+              <label for="fb-name">Name</label>
+              <input id="fb-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="fb-email">Email</label>
+              <input id="fb-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="field">
+              <label for="fb-type">What is it about?</label>
+              <select id="fb-type" name="projectType">
+                <option>General feedback</option>
+                <option>BC Ways feedback</option>
+                <option>BC Eats feedback</option>
+                <option>Question about the project</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fb-message">Message</label>
+              <textarea id="fb-message" name="message" rows="6" maxlength="5000" required></textarea>
+            </div>
+            <!-- Honeypot: hidden from people, bots tend to fill it in -->
+            <div class="hp" aria-hidden="true">
+              <label for="fb-website">Leave this field empty</label>
+              <input id="fb-website" name="honeypot" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn btn-primary" type="submit" id="fb-submit">Send feedback</button>
+            <p id="fb-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer: same on every page -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">Traceback-Technology</span>
+      <p>&copy; 2026 Traceback-Technology. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+```

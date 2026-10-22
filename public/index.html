@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traceback-Technology | Home</title>
+  <meta name="description" content="Traceback-Technology is a student development team building practical technology solutions, including the BC Smart Ecosystem.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header: same on every page -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo: to try the other logo option, change the src below to the other file in images/ (same line on every page) -->
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="images/TT_LOGO.png" alt="Traceback-Technology Logo">
+        <span class="brand-name">Traceback-Technology</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="showcase.html">Project Showcase</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Meet the Team</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Home page / hero section.
+         MEETING NOTE: The overall design needs to retain the Traceback-Technology
+         branding while exploring a lighter visual direction, with more white and
+         light blue. Any future styling updates should be discussed and applied
+         consistently through style.css rather than changing the design randomly. -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Student development team</span>
+          <h1>Welcome to <span>Traceback-Technology</span></h1>
+          <p class="lead">Practical technology solutions that bring together software, intelligent systems and user-focused digital experiences.</p>
+          <a class="btn btn-primary" href="products.html">Explore Our Products</a>
+        </div>
+        <!-- Small glass panel pointing to our current project.
+             MEETING NOTE: Glassmorphism was discussed as a visual direction to
+             explore. Keep the effect readable and consistent with the rest of
+             the website if further styling work is done. -->
+        <div class="glass hero-panel">
+          <p class="panel-label">Our current project</p>
+          <h2>BC Smart Ecosystem</h2>
+          <p>A Multi-domain Smart Ecosystem centred around intelligent campus activities integration and automation.</p>
+          <div class="roles">
+            <a class="role" href="products.html#bc-ways">BC Ways</a>
+            <a class="role" href="products.html#bc-eats">BC Eats</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do
+         Keep the Home page as a general introduction to Traceback-Technology.
+         The Products page should introduce BC Ways and BC Eats concisely, while
+         the Project Showcase page should contain the more detailed explanation
+         and app interface walkthrough. Avoid making every page repeat the same
+         project information. -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What We Do</span>
+          <h2>Interfaces, systems and smart campus ideas</h2>
+          <p class="lead">Traceback-Technology brings together frontend development, backend development and smart campus solutions through projects like the BC Smart Ecosystem. We focus on building the parts of an application that people interact with, the systems that make those applications work, and ways to connect campus activities and services in one place.</p>
+        </div>
+
+        <div class="card-grid three">
+          <article class="glass card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Frontend Development</h3>
+            <p>Creating the interfaces that users see and interact with when using our applications.</p>
+          </article>
+          <article class="glass card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>
+            </div>
+            <h3>Backend Development</h3>
+            <p>Building the functionality and systems that support our applications behind the scenes.</p>
+          </article>
+          <article class="glass card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l8 1M7.5 8l3 8M16.5 10l-3.5 6"/></svg>
+            </div>
+            <h3>Smart Campus Solutions</h3>
+            <p>Exploring how technology can connect campus activities and services through projects like BC Smart Ecosystem.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured project.
+         MEETING NOTE: Keep the relationship between the organisation and the
+         project clear. Traceback-Technology is the team/organisation; BC Smart
+         Ecosystem is its current project, with BC Ways and BC Eats as its parts.
+         Check that descriptions across the website remain consistent with this. -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="glass featured">
+          <div>
+            <span class="eyebrow">Featured project</span>
+            <h2>BC Smart Ecosystem</h2>
+            <p>A Multi-domain Smart Ecosystem centred around intelligent campus activities integration and automation.</p>
+            <div class="chip-row">
+              <a class="chip" href="products.html#bc-ways">BC Ways</a>
+              <a class="chip" href="products.html#bc-eats">BC Eats</a>
+            </div>
+            <a class="btn btn-outline" href="products.html">See the project</a>
+          </div>
+          <div>
+            <p style="margin:0">BC Smart Ecosystem is the one project Traceback-Technology is working on right now. BC Ways and BC Eats are the two parts that make it up.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team introduction.
+         MEETING NOTE: Keep the team count and general description consistent
+         with the Meet the Team page. Verify team members' roles and credentials
+         against the agreed information if this section is updated. -->
+    <section class="section">
+      <div class="container">
+        <div class="glass cta">
+          <span class="eyebrow">The people behind it</span>
+          <h2>Meet the team</h2>
+          <p>Traceback-Technology is made up of eight students working across frontend, backend and robotics. Come and see who we are.</p>
+          <a class="btn btn-primary" href="team.html">Meet the Team</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer: same on every page -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">Traceback-Technology</span>
+      <p>&copy; 2026 Traceback-Technology. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+```
