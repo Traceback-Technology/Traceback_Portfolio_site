@@ -16,6 +16,7 @@ The site is a static multi-page website served by a small Node.js/Express server
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
 - [API Reference](#api-reference)
 - [Security Notes](#security-notes)
 - [Content Guidelines](#content-guidelines)
@@ -85,6 +86,7 @@ Traceback-Technology-Website/
 ├── server.js                # Express server: static files + /api/contact
 ├── package.json             # Dependencies and scripts
 ├── .env.example             # Template for email settings (copy to .env)
+├── render.yaml              # Render Blueprint (hosting config)
 ├── .vscode/settings.json    # Live Server port (5501)
 └── README.md
 ```
@@ -156,6 +158,44 @@ Configured in `.env` (copied from `.env.example`). **Never commit or share your 
 | `CONTACT_RECEIVER_EMAIL` | Inbox that receives the feedback emails | `team-inbox@example.com` |
 
 If `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS` or `CONTACT_RECEIVER_EMAIL` is missing, the server logs a configuration error and returns a generic failure message without leaking details.
+
+### Using the cPanel domain mailbox
+
+Find the exact values under **cPanel > Email Accounts > Connect Devices** for the mailbox:
+
+- `SMTP_HOST`: the outgoing server, usually `mail.yourdomain.com`
+- `SMTP_PORT` / `SMTP_SECURE`: `465` / `true` (SSL), or `587` / `false` (STARTTLS)
+- `SMTP_USER`: the **full** email address; it is also the sender address, because cPanel only lets you send as the mailbox you log in with
+- `SMTP_PASS`: that mailbox's password
+
+On startup the server logs either `SMTP ready: ...` or `SMTP check failed: ...`, so check the logs first if mail isn't arriving.
+
+---
+
+## Deployment
+
+The site is hosted on [Render](https://render.com) as a Node **Web Service**, with the team domain pointed at it.
+
+### 1. Create the service
+
+1. Push this repo to GitHub.
+2. In Render choose **New > Blueprint** and select the repo. `render.yaml` sets the build (`npm ci`), start (`npm start`) and health check (`/healthz`).
+3. Fill in the secret values Render asks for (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_RECEIVER_EMAIL`).
+4. Check the deploy logs for `SMTP ready`, then open the `*.onrender.com` URL.
+
+> **Important:** Render's **free** instance type blocks outgoing SMTP traffic (ports 25, 465 and 587), so the feedback form will time out there. Use a paid instance type such as **Starter**, or ask your cPanel host whether it accepts SMTP on another port (such as `2525`) and set `SMTP_PORT` and `SMTP_SECURE=false` to match.
+
+### 2. Connect the domain
+
+1. In Render: **Settings > Custom Domains**, then add both `yourdomain.com` and `www.yourdomain.com`.
+2. In **cPanel > Zone Editor** (or wherever your DNS is managed), add the records Render shows:
+   - `www` → **CNAME** → `your-service.onrender.com`
+   - root domain (`@`) → **A** record → the IP Render shows (replaces the old cPanel IP)
+3. **Protect email before changing the root A record.** cPanel usually points `mail` and the MX record at the root domain. If the root moves to Render, email breaks. Before switching:
+   - change `mail.yourdomain.com` to its own **A** record with the cPanel server IP (the old root A value)
+   - make sure the **MX** record points to `mail.yourdomain.com`, not to the bare domain
+   - leave the SPF (TXT) and DKIM records as they are
+4. Click **Verify** in Render. It issues the HTTPS certificate automatically once DNS has propagated (minutes to a few hours).
 
 ---
 

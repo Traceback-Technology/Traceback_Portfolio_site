@@ -12,6 +12,10 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Render sits behind a proxy, so trust the first hop to get the real visitor IP
+// (without this every visitor shares the same rate limit)
+app.set('trust proxy', 1);
+
 // small body limit, the form never needs more than a few KB
 app.use(express.json({ limit: '20kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,16 +27,29 @@ const contactLimiter = rateLimit({
   message: { error: 'Too many submissions from this IP — please try again later.' }
 });
 
-// SMTP details come from the .env file, never from the code
+// SMTP details come from the .env file (or Render's environment settings), never from the code
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT) || 465,
   secure: process.env.SMTP_SECURE === 'true',
   auth: {
-    user: process.env.SMTP_USER,
+    user: process.env.SMTP_USER, // cPanel: the full mailbox address, e.g. info@yourdomain.com
     pass: process.env.SMTP_PASS
-  }
+  },
+  // give up quickly instead of leaving the visitor on "Sending..." if the mail server can't be reached
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 20000
 });
+
+function isEmailConfigured() {
+  return Boolean(
+    process.env.SMTP_HOST &&
+    process.env.SMTP_USER &&
+    process.env.SMTP_PASS &&
+    process.env.CONTACT_RECEIVER_EMAIL
+  );
+}
 
 const ALLOWED_TYPES = [
   'General feedback',
@@ -97,13 +114,14 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 
   // if the .env isn't filled in, fail safely without leaking details
-  if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.CONTACT_RECEIVER_EMAIL) {
+  if (!isEmailConfigured()) {
     console.error('Email not configured: check your .env file (see .env.example).');
     return res.status(500).json({ error: 'Something went wrong sending your message. Please try again later.' });
   }
 
   try {
     await transporter.sendMail({
+      // cPanel only lets you send as the mailbox you logged in with, so the sender must be SMTP_USER
       from: `"Traceback-Technology Website" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_RECEIVER_EMAIL,
       replyTo: email, // so the team can reply straight to the visitor
@@ -125,6 +143,11 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
+// Render pings this to check the server is up
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // bad JSON or oversized bodies get a clean JSON error instead of a stack trace
 app.use((err, req, res, next) => {
   if (req.path === '/api/contact') {
@@ -135,4 +158,13 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+
+  // check the SMTP login once at startup so problems show up in the logs straight away
+  if (!isEmailConfigured()) {
+    console.warn('Email not configured: the feedback form will not send until the SMTP and CONTACT_RECEIVER_EMAIL settings are filled in.');
+    return;
+  }
+  transporter.verify()
+    .then(() => console.log(`SMTP ready: logged in to ${process.env.SMTP_HOST} as ${process.env.SMTP_USER}`))
+    .catch((err) => console.error('SMTP check failed:', err.message));
 });
