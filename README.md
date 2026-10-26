@@ -284,7 +284,7 @@ Eight students working across frontend, backend and robotics.
 | --- | --- | --- |
 | Thabang Molise | Project Lead | Robotics Engineer, Backend Developer |
 | Tetelo Phahladira | Project Lead | Full-Stack Developer |
-| Anele Nkayi | Frontend Project Lead | Frontend Developer |
+| Anele Nkayi | Front-End Team Lead | Frontend Developer |
 | Arnold Mabope | Backend Project Lead | Backend Developer |
 | Mufunwa Muofhe | Team member | Backend Developer |
 | Dzanga Madi | Team member | Frontend Developer |

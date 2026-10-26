@@ -6,6 +6,7 @@
   <title>Traceback-Technology | About Us</title>
   <meta name="description" content="About Traceback-Technology, a student development team working on software and smart campus solutions.">
   <link rel="stylesheet" href="style.css">
+  <script src="contact.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -54,8 +55,8 @@
       <div class="container about-grid">
         <div>
           <h2>Our approach</h2>
-          <p>We work on software development, with some of us focusing on frontend, some on backend, and some across both. The frontend is what people see and use. The backend is the part that makes it all work behind the scenes.</p>
-          <p>We are also interested in how technology can connect campus activities and services in one place, so people do not have to jump between different things to get what they need.</p>
+          <p>We are developing the BC Smart Ecosystem to improve campus navigation and make food ordering more convenient for students and visitors. The project brings together BC Ways, which helps users find destinations around campus, and BC Eats, which allows users to browse the tuckshop menu and place orders.</p>
+          <p>The application combines a Flutter frontend with a backend that supports its main features, including navigation, food ordering and order management. By bringing these services together, we aim to make everyday campus activities easier to access in one place.</p>
           <p>Right now, that interest is shaped by our current project, the BC Smart Ecosystem.</p>
           <a class="btn btn-primary" href="products.html">See the project</a>
         </div>
@@ -63,7 +64,6 @@
         <aside class="glass card">
           <h3>What we work on</h3>
           <ul class="about-list">
-            <li>Software development</li>
             <li>Frontend development</li>
             <li>Backend development</li>
             <li>Connecting campus activities and services</li>
@@ -82,6 +82,53 @@
           <h2>Meet the people behind it</h2>
           <p>Eight of us work on Traceback-Technology.</p>
           <a class="btn btn-outline" href="team.html">Meet the Team</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Feedback form: sends a message to the team by email through the Node server (POST /api/contact).
+         It only works when the server is running with valid SMTP settings, see README.txt.
+         TEAM NOTE: Keep this as a genuine visitor feedback form rather than filling
+         the page with placeholder testimonials or reviews. Before deployment, test
+         the form with the server and valid SMTP settings, and check that submissions
+         reach the intended team inbox. -->
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="glass feedback">
+          <span class="eyebrow">Feedback</span>
+          <h2>Send the team your feedback</h2>
+          <p>Have a thought about BC Ways or BC Eats, or a question about the project? Fill this in and it will be emailed to the Traceback-Technology team. We will use your email address only to reply.</p>
+          <form id="feedback-form" class="form" novalidate>
+            <div class="field">
+              <label for="fb-name">Name</label>
+              <input id="fb-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="fb-email">Email</label>
+              <input id="fb-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="field">
+              <label for="fb-type">What is it about?</label>
+              <select id="fb-type" name="projectType">
+                <option>General feedback</option>
+                <option>BC Ways feedback</option>
+                <option>BC Eats feedback</option>
+                <option>Question about the project</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fb-message">Message</label>
+              <textarea id="fb-message" name="message" rows="6" maxlength="5000" required></textarea>
+            </div>
+            <!-- Honeypot: hidden from people, bots tend to fill it in -->
+            <div class="hp" aria-hidden="true">
+              <label for="fb-website">Leave this field empty</label>
+              <input id="fb-website" name="honeypot" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn btn-primary" type="submit" id="fb-submit">Send feedback</button>
+            <p id="fb-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </section>

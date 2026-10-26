@@ -25,8 +25,8 @@
   --glass-border: rgba(255, 255, 255, 0.85);
   --glass-shadow: 0 10px 30px rgba(14, 39, 66, 0.09);
 
-  --radius: 18px;
-  --radius-sm: 10px;
+  --radius: 10px;      /* was 18px: softer-than-boxy but no longer bubble-like */
+  --radius-sm: 6px;    /* was 10px */
   --max-width: 1120px;
 }
 
@@ -129,8 +129,8 @@ p { margin: 0 0 1rem; }
 }
 .site-nav a {
   display: block;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
@@ -146,22 +146,21 @@ p { margin: 0 0 1rem; }
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 1rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.97rem;
   text-decoration: none;
-  border: 2px solid transparent;
-  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .btn-primary {
   background: var(--blue-700);
   color: var(--white);
-  box-shadow: 0 8px 20px rgba(31, 90, 150, 0.25);
 }
-.btn-primary:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
+.btn-primary:hover { background: var(--navy); color: var(--white); }
 .btn-outline {
-  background: rgba(255, 255, 255, 0.6);
+  background: transparent;
   color: var(--navy);
   border-color: var(--blue-600);
 }
@@ -169,7 +168,7 @@ p { margin: 0 0 1rem; }
 
 /* ---------- Sections ---------- */
 .section { padding-block: clamp(3rem, 7vw, 5rem); }
-.section-alt { background: rgba(214, 232, 249, 0.35); }
+.section-alt { background: rgba(214, 232, 249, 0.22); border-block: 1px solid var(--sky-100); }
 
 .section-head { max-width: 720px; margin-bottom: 2.2rem; }
 .eyebrow {
@@ -213,7 +212,7 @@ p { margin: 0 0 1rem; }
   height: 50px;
   display: grid;
   place-items: center;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   background: var(--sky-50);
   color: var(--blue-700);
   margin-bottom: 1rem;
@@ -226,7 +225,13 @@ p { margin: 0 0 1rem; }
   position: relative;
   padding-block: clamp(3rem, 8vw, 6rem);
   overflow: hidden;
-  /* faint grid lines for the tech feel */
+}
+/* faint grid lines for the tech feel. The fade-out lives on this layer only,
+   so it never fades the app screens sitting on top of it */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image:
     linear-gradient(rgba(42, 111, 181, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(42, 111, 181, 0.07) 1px, transparent 1px);
@@ -234,7 +239,9 @@ p { margin: 0 0 1rem; }
   background-position: center top;
   -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
   mask-image: linear-gradient(to bottom, #000 75%, transparent);
+  pointer-events: none;
 }
+.hero-inner { position: relative; }
 .hero-inner {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -278,8 +285,8 @@ p { margin: 0 0 1rem; }
 
 .chip-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.5rem; }
 .chip {
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.14);
@@ -302,15 +309,15 @@ p { margin: 0 0 1rem; }
   position: relative;
   padding: 1.6rem;
   border-radius: var(--radius);
-  border: 2px dashed var(--blue-500);
+  border: 1px solid var(--sky-200);
   background: rgba(234, 243, 252, 0.55);
 }
 .ecosystem-label {
   position: absolute;
   top: -0.9rem;
   left: 1.4rem;
-  padding: 0.25rem 1rem;
-  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radius-sm);
   background: var(--navy);
   color: var(--white);
   font-weight: 700;
@@ -323,8 +330,8 @@ p { margin: 0 0 1rem; }
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.15rem 0.65rem;
-  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
   background: var(--sky-100);
   color: var(--blue-700);
 }
@@ -402,8 +409,8 @@ p { margin: 0 0 1rem; }
 .role {
   font-size: 0.82rem;
   font-weight: 600;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
   background: var(--sky-50);
   color: var(--blue-700);
   border: 1px solid var(--sky-200);
@@ -533,3 +540,180 @@ a.role:hover { background: var(--sky-100); color: var(--navy); }
 .portrait-tetelo { --w: 100.0%; --l: 0.0%; --t: -7.0%; }
 /* Arnold's photo has a plain white backdrop, so the circle is filled with the same white above his head */
 .avatar-arnold { background: #fefefe; }
+
+
+/* =============================================================
+   Visual refinement (supervisor feedback)
+   Same colours, font and logo. Less bubbly, more deliberate:
+   smaller radii, hairline dividers, fewer boxed cards, and the
+   real app screens given room. Ideas borrowed (not copied) from
+   Linear (restraint, spacing), Vercel (clear sections, whitespace)
+   and Raycast (real product imagery shown properly).
+   ============================================================= */
+
+/* section headings: tighter and quieter */
+h1, h2 { letter-spacing: -0.025em; }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.14em; }
+
+/* ---------- Home: hero with real app screens ---------- */
+.hero-inner { grid-template-columns: 1.05fr 0.95fr; }
+.hero-project { margin: 1.4rem 0 0; font-size: 0.95rem; color: var(--text-muted); }
+.hero-project a { font-weight: 600; text-underline-offset: 3px; }
+
+.hero-visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+/* phones keep their natural proportions: only width is set, height follows */
+.phone { width: 46%; height: auto; filter: drop-shadow(0 18px 30px rgba(14, 39, 66, 0.22)); }
+.phone-ways { position: relative; z-index: 1; }
+.phone-eats { margin: 2.2rem 0 0 4%; }   /* side by side, no overlap, so no interface detail is hidden */
+
+/* one gentle entrance, switched off by the reduced-motion rule at the bottom */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.phone-ways { animation: rise 0.6s ease both; }
+.phone-eats { animation: rise 0.6s 0.12s ease both; }
+
+/* ---------- Home: What We Do as plain columns ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.feature { padding-top: 1.4rem; border-top: 1px solid var(--sky-200); }
+.feature .icon {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--sky-50);
+  color: var(--blue-700);
+  margin-bottom: 1rem;
+}
+.feature .icon svg { width: 22px; height: 22px; }
+.feature p { color: var(--text-muted); margin-bottom: 0; }
+
+/* ---------- Home: featured project with the home screen ---------- */
+.featured { grid-template-columns: 1.1fr 0.9fr; overflow: hidden; }
+.featured-visual { margin: 0; display: flex; justify-content: center; }
+.featured-visual img { width: min(260px, 100%); height: auto; filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.35)); }
+.featured .btn-outline { color: var(--white); border-color: rgba(255, 255, 255, 0.55); }
+.featured .btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+
+/* ---------- Products: app screen at the top of each component card ---------- */
+.app-shot {
+  margin: -1.7rem -1.7rem 1.4rem;
+  padding: 1.4rem 1rem 0;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: var(--sky-50);
+  border-bottom: 1px solid var(--sky-100);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.app-shot img { width: auto; height: 100%; max-width: none; filter: drop-shadow(0 10px 18px rgba(14, 39, 66, 0.2)); }
+.component { overflow: hidden; }
+
+/* ---------- Showcase: app interfaces ---------- */
+.showcase-row {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+.showcase-row.reverse { grid-template-columns: 7fr 5fr; }
+.showcase-copy p { color: var(--text-muted); font-size: 1.08rem; max-width: 44ch; }
+.stage {
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--sky-50);
+  border: 1px solid var(--sky-100);
+  border-radius: var(--radius);
+}
+.stage img { width: 100%; height: auto; margin-inline: auto; }
+.stage video { width: 100%; display: block; border-radius: var(--radius-sm); background: var(--navy); }
+.stage figcaption { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--sky-200); color: var(--text-muted); font-size: 0.95rem; }
+.stage figcaption strong { display: block; color: var(--navy); font-size: 1rem; margin-bottom: 0.2rem; }
+.phone-pair { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+.ways-row { grid-template-columns: 4fr 8fr; align-items: start; }
+.stage.single { max-width: 440px; margin-inline: auto; width: 100%; }
+.stage.single img { width: min(300px, 100%); filter: drop-shadow(0 12px 22px rgba(14, 39, 66, 0.2)); }
+.phone-pair .stage img { width: min(300px, 100%); filter: drop-shadow(0 12px 22px rgba(14, 39, 66, 0.2)); }
+
+/* ---------- Team: GitHub reveal on the photo ---------- */
+/* Only used on a photo that has class "has-gh" (see the note in team.html) */
+.avatar.has-gh img.portrait { transition: transform 0.35s ease; }
+.avatar.has-gh { transition: box-shadow 0.25s ease; }
+.avatar.has-gh:hover, .avatar.has-gh:focus-within {
+  box-shadow: 0 0 0 3px rgba(25, 194, 222, 0.55), 0 6px 16px rgba(14, 39, 66, 0.18);
+}
+.avatar.has-gh:hover img.portrait, .avatar.has-gh:focus-within img.portrait { transform: scale(1.05); }
+.gh-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: rgba(14, 39, 66, 0.84);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  overflow-wrap: anywhere;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.gh-overlay svg { width: 24px; height: 24px; }
+.gh-overlay:hover { color: var(--white); }
+.avatar.has-gh:hover .gh-overlay, .avatar.has-gh:focus-within .gh-overlay { opacity: 1; }
+.gh-overlay:focus-visible { outline: 3px solid #8fe6f4; outline-offset: -6px; border-radius: 50%; }
+/* touch screens cannot hover: show a small tappable strip at the bottom of the photo instead */
+@media (hover: none) {
+  .gh-overlay { inset: auto 0 0 0; height: 32%; flex-direction: row; gap: 0.3rem; padding: 0; opacity: 1; font-size: 0.7rem; }
+  .gh-overlay svg { width: 14px; height: 14px; }
+}
+
+/* ---------- Responsive additions ---------- */
+@media (max-width: 1000px) {
+  .feature-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+@media (max-width: 820px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { max-width: 380px; margin-inline: auto; }
+  .featured { grid-template-columns: 1fr; }
+  .showcase-row, .showcase-row.reverse, .ways-row { grid-template-columns: 1fr; }
+  .showcase-row.reverse .stage { order: 2; }
+}
+@media (max-width: 560px) {
+  .phone-pair { grid-template-columns: 1fr; }
+  .app-shot { height: 320px; }
+}
+/* Thabang and Jimmy (added later, same method as the rest) */
+.portrait-thabang { --w: 110.0%; --l: 0.0%; --t: 0.0%; }
+.portrait-jimmy { --w: 100.0%; --l: 0.0%; --t: -5.4%; }
+
+
+/* ---------- Team: "View GitHub Profile" button ---------- */
+.gh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--blue-600);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--blue-700);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.gh-btn svg { width: 15px; height: 15px; flex: none; }
+.gh-btn:hover { background: var(--navy); border-color: var(--navy); color: var(--white); }
