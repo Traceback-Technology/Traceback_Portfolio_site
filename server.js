@@ -32,6 +32,8 @@ const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT) || 465,
   secure: process.env.SMTP_SECURE === 'true',
+  // on non-SSL ports (587, 2525, 26) insist on STARTTLS so the password is never sent in plain text
+  requireTLS: process.env.SMTP_SECURE !== 'true',
   auth: {
     user: process.env.SMTP_USER, // cPanel: the full mailbox address, e.g. info@yourdomain.com
     pass: process.env.SMTP_PASS

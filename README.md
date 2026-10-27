@@ -180,10 +180,12 @@ The site is hosted on [Render](https://render.com) as a Node **Web Service**, wi
 
 1. Push this repo to GitHub.
 2. In Render choose **New > Blueprint** and select the repo. `render.yaml` sets the build (`npm ci`), start (`npm start`) and health check (`/healthz`).
-3. Fill in the secret values Render asks for (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_RECEIVER_EMAIL`).
-4. Check the deploy logs for `SMTP ready`, then open the `*.onrender.com` URL.
+3. Wait for the deploy to finish, then open the `*.onrender.com` URL.
+4. Email is not set up yet (planned for later). When it is, add `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS` and `CONTACT_RECEIVER_EMAIL` under the service's **Environment** tab and check the logs for `SMTP ready`.
 
-> **Important:** Render's **free** instance type blocks outgoing SMTP traffic (ports 25, 465 and 587), so the feedback form will time out there. Use a paid instance type such as **Starter**, or ask your cPanel host whether it accepts SMTP on another port (such as `2525`) and set `SMTP_PORT` and `SMTP_SECURE=false` to match.
+> **Free instance notes:**
+> - Render's free instance type **blocks outgoing SMTP on ports 25, 465 and 587**. Use the cPanel host's alternative SMTP port instead (commonly `2525` or `26`) with `SMTP_SECURE=false`. The connection is still upgraded to TLS (STARTTLS).
+> - Free instances go to sleep after about 15 minutes without visitors, so the first visit afterwards can take up to a minute to load.
 
 ### 2. Connect the domain
 
